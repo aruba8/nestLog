@@ -42,7 +42,7 @@ public class ScheduledRunner {
         this.mongoRepo = mongoRepo;
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 60000)
     public void scheduledRequest() {
         JSONObject resp = sendRequest();
         saveData(resp);
