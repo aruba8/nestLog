@@ -4,6 +4,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.bson.Document;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,7 +70,9 @@ public class ScheduledRunner {
     }
 
     private void saveData(JSONObject data) {
-        mongoRepo.saveData(data);
+        Document docToSave = Document.parse(data.toString());
+        docToSave.append("ts", new Date());
+        mongoRepo.saveData(docToSave);
     }
 
 

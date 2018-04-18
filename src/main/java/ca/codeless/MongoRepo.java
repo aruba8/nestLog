@@ -4,7 +4,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,8 +17,8 @@ public class MongoRepo {
         collection = database.getCollection("nestdata");
     }
 
-    public void saveData(JSONObject data) {
-        this.collection.insertOne(Document.parse(data.toString()));
+    public void saveData(Document document) {
+        this.collection.insertOne(document);
     }
 
 }
